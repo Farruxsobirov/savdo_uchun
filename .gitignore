@@ -1,0 +1,7 @@
+# Shaxsiy maʼlumotlar va zaxira nusxalar repoga tushmasin
+*.json
+!manifest.webmanifest
+!vercel.json
+.DS_Store
+node_modules/
+.vercel
