@@ -528,12 +528,15 @@ function saleCard(info) {
   const s = info.s; const items = (s.items || []).map(i => `${esc(i.name)}${i.qty > 1 ? " × " + i.qty : ""}`).join(", ");
   const st = info.remaining <= 0.5 ? ["paid", "Toʻlangan"] : info.overdue > 0.5 ? ["late", "Kechikkan"] : ["debt", "Davom etmoqda"];
   return `<div class="sale">
-    <div class="sh"><div style="min-width:0"><b class="num">${som(info.total)}</b><span class="hint">${fmtDate(s.date, true)} · ${s.type === "credit" ? `Nasiya, ${s.months} oy` : "Naqd"}</span></div><span class="pill ${st[0]}">${st[1]}</span></div>
+    <div class="sh"><div style="min-width:0"><b class="num">${som(info.total)}</b><span class="hint">${fmtDate(s.date, true)} · ${s.type === "credit" ? `Nasiya, ${s.months}&nbsp;oy` : "Naqd"}</span></div><span class="pill ${st[0]}">${st[1]}</span></div>
     <div class="items">${items || "—"}</div>
     ${s.type === "credit" ? `<div class="summary">
       <div class="r"><span>Boshlangʻich</span><b>${som(s.down)}</b></div>
       <div class="r"><span>Oylik toʻlov</span><b>${som(info.monthlyNow)}${s.scheduleMode === "recalc" && Math.abs(info.monthlyNow - s.monthly) > 0.5 ? ` <small style="font-weight:400;color:var(--muted)">(dastlab ${fmt(s.monthly)})</small>` : ""}</b></div>
       <div class="r"><span>Hisoblash</span><button type="button" class="mode-btn" data-act="toggle-mode" data-id="${s.id}" aria-label="Hisoblash usulini almashtirish">${MODE[s.scheduleMode === "recalc" ? "recalc" : "fixed"]} ${I.swap}</button></div>
+      ${info.remaining > 0.5 ? `<div class="mode-note">${s.scheduleMode === "recalc"
+        ? (Math.abs(info.monthlyNow - s.monthly) > 0.5 ? "Mijoz oldindan toʻlagani uchun qolgan oylar qayta boʻlindi." : "Mijoz grafikdan ortiq toʻlasa, qoldiq qolgan oylarga teng boʻlinadi va oylik summa kamayadi.")
+        : "Ortiqcha toʻlov keyingi oylarni yopadi, oylik summa oʻzgarmaydi."}</div>` : ""}
       <div class="r"><span>Toʻlangan</span><b style="color:var(--good)">${som(info.paid)}</b></div>
       <div class="r big"><span>Qoldiq</span><b>${som(info.remaining)}</b></div></div>
     <details><summary>Toʻlov grafigi (${info.sched.filter(x => x.st === "paid").length}/${info.sched.length})</summary>

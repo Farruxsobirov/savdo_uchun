@@ -362,3 +362,5 @@ main.enter .chart-wrap rect{transform-box:fill-box;transform-origin:50% 100%;ani
 .row:active{background:var(--surface-2)}
 .toast{transition:opacity .25s,transform .3s cubic-bezier(.2,.8,.2,1)}
 @media (prefers-reduced-motion: reduce){main.enter > *,main.enter .cards > *,main.enter .rows > *,main.enter rect,main.enter .split i,main.enter .progress i{animation:none!important}}
+.mode-note{font-size:12px;line-height:1.4;color:var(--muted);margin-top:-2px}
+.sale .sh .hint{display:block}
