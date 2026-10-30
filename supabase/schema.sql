@@ -40,6 +40,7 @@ create table if not exists public.sales (
   monthly     bigint,                               -- oylik toʻlov
   first_due   date,                                 -- birinchi oylik toʻlov sanasi
   markup      numeric default 0,
+  schedule_mode text not null default 'fixed' check (schedule_mode in ('fixed', 'recalc')), -- fixed: belgilangan, recalc: qayta hisoblash
   created_at  timestamptz not null default now()
 );
 

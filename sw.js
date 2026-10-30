@@ -1,5 +1,5 @@
 // Nasiya Daftar service worker: ilova qobigʻini keshlaydi, maʼlumotlar har doim Supabase'dan olinadi.
-const VERSION = "nd-v1";
+const VERSION = "nd-v2";
 const SHELL = ["/", "/index.html", "/style.css", "/app.js", "/config.js", "/manifest.webmanifest", "/icons/icon-192.png", "/icons/favicon.svg"];
 
 self.addEventListener("install", e => {

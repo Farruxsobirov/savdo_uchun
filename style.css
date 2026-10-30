@@ -313,3 +313,52 @@ main{max-width:720px;margin:0 auto;padding-block:14px 120px;padding-left:max(16p
   .gallery{grid-template-columns:repeat(4,1fr)}
   .sheet{border-radius:22px;bottom:16px}
 }
+
+/* ---------- payments tabs & due view ---------- */
+.tabseg{display:grid;grid-template-columns:1fr 1fr;background:var(--surface-2);border-radius:14px;padding:4px;gap:4px}
+.tabseg button{height:42px;border:0;border-radius:10px;background:transparent;font-weight:600;font-size:15px;color:var(--muted);transition:background .2s,color .2s,box-shadow .2s}
+.tabseg button[aria-selected="true"]{background:var(--surface);color:var(--fg);box-shadow:0 1px 3px rgba(0,0,0,.12)}
+.chip svg{width:16px;height:16px}
+.daterange{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:12px}
+.late-note{display:flex;align-items:center;gap:10px;width:100%;text-align:left;padding:12px 14px;border-radius:14px;border:1px solid transparent;background:var(--bad-soft);color:var(--bad);font-size:14px}
+.late-note svg{width:18px;height:18px;flex:none}
+.late-note span{flex:1;min-width:0}
+.due-row{gap:8px}
+.due-main{display:flex;align-items:center;gap:12px;flex:1;min-width:0;text-decoration:none;color:inherit}
+.due-main .amt small{max-width:120px;white-space:normal}
+.due-pay{width:42px;height:42px;border-radius:12px;color:var(--accent);background:var(--accent-soft);border-color:transparent}
+.due-done{width:42px;height:42px;display:grid;place-items:center;color:var(--good);flex:none}
+.due-done svg{width:20px;height:20px}
+.st-late{color:var(--bad);font-weight:600}.st-part{color:var(--accent);font-weight:600}.st-paid{color:var(--good);font-weight:600}
+.kpis .kpi.good .v{color:var(--good)}
+
+/* ---------- hybrid mode ---------- */
+.mode-btn{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--surface);border-radius:999px;height:30px;padding:0 10px;font-size:13px;font-weight:600;color:var(--accent)}
+.mode-btn svg{width:14px;height:14px}
+.summary .r{align-items:center}
+
+/* ---------- product sheet ---------- */
+.row .chev{color:var(--muted);display:grid;width:18px;flex:none}
+.row .chev svg{width:18px;height:18px}
+.ps-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.ps-head b{display:block;font-family:var(--font-display);font-size:20px;margin-top:2px}
+.ps-stats{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px}
+.sheet .rows{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:4px 12px}
+.sheet .rows > .row:first-child{padding-top:12px}
+.row .amt .pill{margin-left:auto}
+.row .amt{display:flex;flex-direction:column;align-items:flex-end;gap:3px}
+
+/* ---------- enter animations ---------- */
+@keyframes ndFadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes ndBar{from{width:0}}
+@keyframes ndGrow{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+main.enter > *{animation:ndFadeUp .45s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i,0) * 50ms)}
+main.enter .cards > *, main.enter .rows > *{animation:ndFadeUp .4s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--j,0) * 35ms + 140ms)}
+main.enter .split i, main.enter .progress i, main.enter .ccard .bar i{animation:ndBar .9s cubic-bezier(.2,.8,.2,1) both;animation-delay:.2s}
+main.enter .chart-wrap rect{transform-box:fill-box;transform-origin:50% 100%;animation:ndGrow .7s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--k,0) * 70ms + .2s)}
+.btn,.icon-btn,.chip,.row,.ccard,.action-tile,.mode-btn,.due-pay{transition:transform .12s ease,background-color .2s,border-color .2s,color .2s,opacity .2s}
+.btn:active,.icon-btn:active,.chip:active,.action-tile:active,.mode-btn:active,.fab:active{transform:scale(.96)}
+.fab{transition:transform .15s ease}
+.row:active{background:var(--surface-2)}
+.toast{transition:opacity .25s,transform .3s cubic-bezier(.2,.8,.2,1)}
+@media (prefers-reduced-motion: reduce){main.enter > *,main.enter .cards > *,main.enter .rows > *,main.enter rect,main.enter .split i,main.enter .progress i{animation:none!important}}
